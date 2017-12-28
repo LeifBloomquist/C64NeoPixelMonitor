@@ -12,6 +12,9 @@
 #define PIN_PIXELS 0   // 0 for Trinket
 #define PIN_C64IRQ 1
 #define PIN_C64ROM 2
+#define PIN_C64NMI 4
+
+// TODO: PinChangeInterrupts?   https://github.com/NicoHood/PinChangeInterrupt
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_PIXELS, PIN_PIXELS, NEO_GRB + NEO_KHZ800);
 
