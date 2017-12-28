@@ -11,6 +11,7 @@
 #define NUM_PIXELS 8
 #define PIN_PIXELS 0   // 0 for Trinket
 #define PIN_C64IRQ 1
+#define PIN_C64ROM 2
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_PIXELS, PIN_PIXELS, NEO_GRB + NEO_KHZ800);
 
@@ -26,6 +27,7 @@ void setup() {
 
     // Inputs
     pinMode(PIN_C64IRQ, INPUT_PULLUP);
+    pinMode(PIN_C64ROM, INPUT_PULLUP);
 
     timer.setInterval(100, Animate);
 
@@ -36,11 +38,15 @@ void setup() {
 int pixel = 4;
 int pixeldir = 1;
 float bright[NUM_PIXELS] = { 0 };
-int c64irq = 0;
+
+byte c64irq = 0;
+byte c64rom = 0;
 
 void loop()
 {
     c64irq = digitalRead(PIN_C64IRQ);
+    c64rom = digitalRead(PIN_C64ROM);
+
     timer.run();
 }
 
@@ -71,13 +77,17 @@ void Refresh()
     {
         bright[i] *= 0.5;
 
-        if (c64irq == 0)
-        {
-            strip.setPixelColor(i, 0, 0, bright[i] * 128);
-        }
-        else
+        if (c64irq == 1)   // IRQ = RED
         {
             strip.setPixelColor(i, bright[i] * 128, 0, 0);
+        }   
+        else if (c64rom == 1)  // EXROM = GREEN
+        {
+            strip.setPixelColor(i, 0, bright[i] * 128, 0);
+        }
+        else  // Normal = Blue
+        {
+            strip.setPixelColor(i, 0, 0, bright[i] * 128);
         }
     }
     strip.show();
