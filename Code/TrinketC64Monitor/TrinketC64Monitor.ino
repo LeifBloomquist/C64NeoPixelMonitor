@@ -1,3 +1,5 @@
+#include <avr/power.h>
+
 #include <Adafruit_NeoPixel.h>
 #include <SimpleTimer.h>
 
@@ -6,12 +8,9 @@
 // ORANGEGREEN = DIN   #0
 // BROWN/BLACK = GND
 
-#ifdef __AVR__
-#include <avr/power.h>
-#endif
-
 #define NUM_PIXELS 8
-#define PIN_PIXELS 0   // 0 for Trinket,
+#define PIN_PIXELS 0   // 0 for Trinket
+#define PIN_C64IRQ 1
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_PIXELS, PIN_PIXELS, NEO_GRB + NEO_KHZ800);
 
@@ -25,6 +24,9 @@ void setup() {
 #endif
     // End of trinket special code
 
+    // Inputs
+    pinMode(PIN_C64IRQ, INPUT_PULLUP);
+
     timer.setInterval(100, Animate);
 
     strip.begin();
@@ -34,9 +36,11 @@ void setup() {
 int pixel = 4;
 int pixeldir = 1;
 float bright[NUM_PIXELS] = { 0 };
+int c64irq = 0;
 
 void loop()
 {
+    c64irq = digitalRead(PIN_C64IRQ);
     timer.run();
 }
 
@@ -66,7 +70,15 @@ void Refresh()
     for (int i = 0; i < NUM_PIXELS; i++)
     {
         bright[i] *= 0.5;
-        strip.setPixelColor(i, 0, 0, bright[i] * 128);
+
+        if (c64irq == 0)
+        {
+            strip.setPixelColor(i, 0, 0, bright[i] * 128);
+        }
+        else
+        {
+            strip.setPixelColor(i, bright[i] * 128, 0, 0);
+        }
     }
     strip.show();
 }
