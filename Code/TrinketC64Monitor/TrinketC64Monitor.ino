@@ -112,4 +112,9 @@ void Refresh()
         }
     }
     strip.show();
+
+    c64irq = 0;
+    c64rom = 0;
+    c64gam = 0;
+    c64nmi = 0;
 }
