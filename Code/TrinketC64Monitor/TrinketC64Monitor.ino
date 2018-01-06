@@ -53,10 +53,10 @@ byte c64nmi = 0;
 
 void loop()
 {
-    c64irq += digitalRead(PIN_C64IRQ);
-    c64rom += digitalRead(PIN_C64ROM);
-    c64gam += digitalRead(PIN_C64GAM);
-    c64nmi += digitalRead(PIN_C64NMI);
+    c64irq = digitalRead(PIN_C64IRQ);
+    c64rom = digitalRead(PIN_C64ROM);
+    c64gam = digitalRead(PIN_C64GAM);
+    c64nmi = digitalRead(PIN_C64NMI);
 
     timer.run();
 }
@@ -79,30 +79,38 @@ void Animate()
         break;
     }
 
+    Fade();
     Refresh();
+}
+
+void Fade()
+{
+    for (int i = 0; i < NUM_PIXELS; i++)
+    {
+        bright[i] *= 0.5;
+    }
 }
 
 void Refresh()
 {
     for (int i = 0; i < NUM_PIXELS; i++)
     {
-        bright[i] *= 0.5;
-
         byte rgbval = bright[i] * MAX_BRIGHT;
 
-        if (c64irq > 1)       // IRQ = RED
-        {
-            strip.setPixelColor(i, rgbval, 0, 0);
-        }   
-        else if (c64rom > 1)  // EXROM = GREEN
+       // if (c64irq == 1)       // IRQ = RED
+       // {
+        //    strip.setPixelColor(i, rgbval, 0, 0);
+        //}   
+        //else 
+        if (c64rom == 1)  // EXROM = GREEN
         {
             strip.setPixelColor(i, 0, rgbval, 0);
         }
-        else if (c64gam > 1)  // GAME = YELLOW
+        else if (c64gam == 1)  // GAME = YELLOW
         {
             strip.setPixelColor(i, rgbval, rgbval, 0);
         }
-        else if (c64nmi > 1)  // NMI = WHITE
+        else if (c64nmi == 1)  // NMI = WHITE
         {
             strip.setPixelColor(i, rgbval, rgbval, rgbval);
         }
@@ -112,9 +120,4 @@ void Refresh()
         }
     }
     strip.show();
-
-    c64irq = 0;
-    c64rom = 0;
-    c64gam = 0;
-    c64nmi = 0;
 }
