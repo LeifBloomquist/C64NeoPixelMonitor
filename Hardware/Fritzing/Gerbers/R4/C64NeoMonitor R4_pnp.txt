@@ -1,0 +1,42 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=C64NeoMonitor R4
+*Date=19:24:47
+*CreatedBy=Fritzing 0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;DIP (Dual Inline) [THT];39.0878;-15.3876;-90;Bottom;IC1
+2;;THT;7.33783;-2.68764;-90;Bottom;PWR
+3;;;18.7678;-17.9276;0;Bottom;Via3
+4;;THT;40.3578;-2.68764;-90;Bottom;C64
+5;;;41.6501;-5.82486;-90;Bottom;TXT1
+6;;;25.0874;-12.099;0;Bottom;Pad6
+7;;;38.2603;-22.2342;0;Bottom;TXT1
+8;;;44.277;-5.76376;-90;Bottom;TXT1
+9;;;38.9563;-14.5258;0;Bottom;TXT1
+10;;;27.5039;-15.0014;0;Bottom;Pad4
+11;;;26.3895;-5.82263;-90;Bottom;TXT1
+12;;;27.5165;-12.1361;0;Bottom;Pad7
+13;;;16.6763;-14.6208;0;Bottom;TXT1
+14;;;15.3018;-15.3876;-90;Bottom;Trinket
+15;;;25.0874;-14.9643;0;Bottom;Pad5
+16;;;29.0164;-5.76153;-90;Bottom;TXT1
+17;;;39.206;-5.82486;-90;Bottom;TXT1
+18;;;23.9457;-5.22718;-90;Bottom;TXT1
+19;;;16.2278;-17.9276;0;Bottom;Via2
+20;;;6.25843;-5.33087;-90;Bottom;TXT1
+21;;;36.7622;-5.82486;-90;Bottom;TXT1
+22;;;26.3661;-14.1828;0;Bottom;Pad9
+23;;;14.9422;-11.5777;0;Bottom;Via1
+24;;THT;25.1178;-2.68764;-90;Bottom;Pixels
+25;;;26.3073;-12.9299;0;Bottom;Pad8
+26;;;8.80695;-5.82839;-90;Bottom;TXT1
+27;;;21.4206;-5.79209;-90;Bottom;TXT1

@@ -97,11 +97,11 @@ void Refresh()
     {
         byte rgbval = bright[i] * MAX_BRIGHT;
 
-       // if (c64irq == 1)       // IRQ = RED
-       // {
-        //    strip.setPixelColor(i, rgbval, 0, 0);
-        //}   
-        //else 
+        if (c64irq == 1)       // IRQ = RED
+        {
+             strip.setPixelColor(i, rgbval, 0, 0);
+        }   
+        else 
         if (c64rom == 1)  // EXROM = GREEN
         {
             strip.setPixelColor(i, 0, rgbval, 0);
